@@ -1,0 +1,51 @@
+<div class="container" style="margin-top :7%">
+  <section id="content">
+    <form [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit()" role="form">
+      <h1>Register Form</h1>
+      <div>
+        <input type="text" formControlName="name" placeholder="Name" required="" id="name" />
+        <div style="text-align: left;"
+          *ngIf="registerForm.controls['name'].errors && (throwErrors || (registerForm.controls['name'].dirty || registerForm.controls['name'].touched))">
+          <span class="redError" *ngIf="registerForm.controls['name'].errors.required">
+            *Name is required.
+          </span>
+        </div>
+      </div>
+      <div>
+        <input type="text" formControlName="email" placeholder="Email" required="" id="username" />
+        <div style="text-align: left;"
+          *ngIf="registerForm.controls['email'].errors && (throwErrors || (registerForm.controls['email'].dirty || registerForm.controls['email'].touched))">
+          <span class="redError" *ngIf="registerForm.controls['email'].errors.required">
+            *Email is required.
+          </span>
+          <span class="redError" *ngIf="registerForm.controls['email'].errors.pattern">
+            *Email is invalid.
+          </span>
+        </div>
+      </div>
+      <div>
+        <input type="password" formControlName="password" placeholder="Password" id="password" />
+        <div style="text-align: left;"
+          *ngIf="registerForm.controls['password'].errors && (throwErrors || (registerForm.controls['password'].dirty || registerForm.controls['password'].touched))">
+          <span class="redError" *ngIf="registerForm.controls['password'].errors.required">
+            *Password is required.
+          </span>
+        </div>
+      </div>
+      <div>
+        <input type="password" formControlName="confirmPassword" placeholder="Confirm Password" id="confirmPassword" />
+        <div style="text-align: left;"
+          *ngIf="registerForm.controls['confirmPassword'].errors && (throwErrors || (registerForm.controls['confirmPassword'].dirty || registerForm.controls['confirmPassword'].touched))">
+          <span class="redError" *ngIf="registerForm.controls['confirmPassword'].errors.required">
+            *Confirm Password is required.
+          </span>
+        </div>
+      </div>
+      <div>
+        <input type="submit" value="Register" />
+        <a routerLink="/login">Login</a>
+      </div>
+    </form><!-- form -->
+
+  </section><!-- content -->
+</div>

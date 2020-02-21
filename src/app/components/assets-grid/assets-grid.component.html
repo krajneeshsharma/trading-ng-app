@@ -1,0 +1,10 @@
+<section class="stock-transactions full-width">
+  <ag-grid-angular #agGrid style="height: 350px; " class="ag-theme-balham" [rowData]="assets">
+    <ag-grid-column headerName="Stock" field="symbol"></ag-grid-column>
+    <ag-grid-column headerName="Amount" field="amount"></ag-grid-column>
+
+    <ag-grid-column headerName="Current Price" field="lastTick.price" [valueFormatter]="priceFormatter"></ag-grid-column>
+    <ag-grid-column headerName="Total" field="total" [valueFormatter]="priceFormatter"></ag-grid-column>
+    <ag-grid-column headerName="Sell"><button>Sell</button></ag-grid-column>
+  </ag-grid-angular>
+</section>

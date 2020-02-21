@@ -1,0 +1,16 @@
+<section class="stock-list">
+  <h2 class="stock-list__title">
+    Stocks that I follow <a><span class="stock-list__btn stock-list__btn--add" (click)="followPopupOpen = true">&#43;</span></a>
+  </h2>
+  <app-follow-stocks-popup *ngIf="followPopupOpen" (followClick)="onStockFollow($event)"></app-follow-stocks-popup>
+  <div class="stock-list__grid">
+    <app-stock-details
+      class="stock-list__grid-row"
+      *ngFor="let stock of followList; trackBy: trackByFn"
+      (removeClick)="onRemoveClick($event)"
+      (stockSelected)="onStockSelected($event)"
+      [symbol]="stock.symbol"
+      [showRemove]="true"
+    ></app-stock-details>
+  </div>
+</section>
