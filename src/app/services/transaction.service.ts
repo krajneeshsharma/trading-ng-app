@@ -17,7 +17,7 @@ export class TransactionService {
     return environment.serverUrl + 'transactions';
   }
 
-  constructor(private http: HttpClient, private userService: UserService) {}
+  constructor(private http: HttpClient, private userService: UserService) { }
 
   getTransactions(isInit: boolean = false): { data: Array<TransactionInfo>; subscription: Subject<TransactionUpdate> } {
     if (!this.transactions || isInit) {
@@ -87,4 +87,7 @@ export class TransactionService {
       data: this.transactions
     });
   }
+
+
+
 }

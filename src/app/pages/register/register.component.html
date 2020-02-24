@@ -30,6 +30,9 @@
           <span class="redError" *ngIf="registerForm.controls['password'].errors.required">
             *Password is required.
           </span>
+          <span class="redError"  *ngIf="registerForm.controls['password'].valid  && registerForm.errors?.mismatch">
+            *Password mismatch.
+          </span>
         </div>
       </div>
       <div>

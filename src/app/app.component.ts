@@ -8,10 +8,18 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent implements OnInit {
   title = 'Mock Trading Server using Angular';
-
-  constructor(private authService: AuthService) {}
+  isAuth = false;
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    console.info('app started with user', this.authService.getUserId());
+    console.log('app started with user', this.authService.getUserId());
+    this.authService.getAuthData().subscribe(res => {
+      this.isAuth = res;
+    });
+  }
+  logout() {
+    localStorage.clear();
+    this.authService.sendAuthData(false);
+    location.reload();
   }
 }

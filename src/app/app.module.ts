@@ -19,6 +19,8 @@ import { FollowStocksPopupComponent } from './components/follow-stocks-popup/fol
 import { BuySellPopupComponent } from './components/buy-sell-popup/buy-sell-popup.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -31,7 +33,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [BrowserModule, RouterModule.forRoot(routes), HttpClientModule, FormsModule, ReactiveFormsModule,
+  imports: [BrowserModule, RouterModule.forRoot(routes), BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), HttpClientModule, FormsModule, ReactiveFormsModule,
     AgGridModule.withComponents([])],
   declarations: [
     AppComponent,

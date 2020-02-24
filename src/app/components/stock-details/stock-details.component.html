@@ -3,10 +3,17 @@
     <a (click)="onRemove()"><span class="stock-list__btn stock-list__btn--remove">&ndash;</span></a>
   </div>
   <div *ngIf="!showRemove" class="stock-list__grid-cell stock-list__grid-cell--txt-blue">&#x25BC;</div>
-  <div class="stock-list__grid-cell" (click)="onStockClick(symbol)">{{ symbol }}</div>
+  <div class="stock-list__grid-cell" (click)="onStockClick(symbol)">
+  <a routerLink="/details/{{ symbol }}">
+  {{ symbol }}
+  </a>
+  </div>
   <div class="stock-list__grid-cell stock-list__grid-cell--txt-blue wide">{{ currentPrice ? currentPrice.toFixed(3) : '-' }}</div>
   <div class="stock-list__grid-cell">
     <a><span class="btn-transaction btn-transaction--buy" (click)="openBuySellPopup('buy')">buy</span></a>
+  </div>
+   <div class="stock-list__grid-cell">
+    <a><span class="btn-transaction btn-transaction--buy" (click)="openBuySellPopup('draft')">Draft</span></a>
   </div>
   <ng-container *ngIf="amount">
     <div class="stock-list__grid-cell">

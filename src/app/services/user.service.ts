@@ -16,11 +16,19 @@ export class UserService {
     return environment.serverUrl + 'userdata/watchlist';
   }
 
+  get getLoginUrl(): string {
+    return environment.serverUrl + 'userdata/login';
+  }
+  get registerUrl(): string {
+    return environment.serverUrl + 'userdata/register';
+  }
+
+
   get allocationsUrl(): string {
     return environment.serverUrl + 'userdata/allocations';
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   /**
    * The pattern which we follow here is to get the data from server only once and share subscription for future updates
@@ -49,8 +57,8 @@ export class UserService {
   updateAllocations(data: Array<AllocationInfo>, isInit: boolean, symbol?: string) {
     this.allocations = data;
     this.allocationsSubscription.next({
-      isInit: isInit,
-      symbol: symbol,
+      isInit,
+      symbol,
       data: this.allocations
     });
   }
@@ -63,7 +71,7 @@ export class UserService {
    * @memberof UserService
    */
   getAllocationsForAsset(symbol): { data: AllocationInfo; subscription: Observable<AllocationInfo> } {
-    let subscription = this.getAllocations().subscription.pipe(
+    const subscription = this.getAllocations().subscription.pipe(
       rxFilter((response: any) => {
         return response.isInit || response.symbol === symbol;
       }),
@@ -71,7 +79,7 @@ export class UserService {
     );
 
     return {
-      subscription: subscription,
+      subscription,
       data: this.mapSingleAssetFromList(this.allocations, symbol)
     };
   }
@@ -88,7 +96,7 @@ export class UserService {
     return this.http.post(
       this.watchListUrl,
       {
-        symbol: symbol,
+        symbol,
         action: 'ADD'
       },
       {
@@ -101,7 +109,7 @@ export class UserService {
     return this.http.post(
       this.watchListUrl,
       {
-        symbol: symbol,
+        symbol,
         action: 'REMOVE'
       },
       {
@@ -109,4 +117,22 @@ export class UserService {
       }
     );
   }
+
+  loginUser(data): Observable<any> {
+    console.log(data);
+    return this.http.post(
+      `${environment.serverUrl}userdata/login`,
+      data,
+      {}
+    );
+  }
+
+  registerUser(data: any): Observable<any> {
+    return this.http.post(
+      this.registerUrl,
+      data
+    );
+  }
+
+
 }

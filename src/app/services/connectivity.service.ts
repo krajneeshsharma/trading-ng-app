@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NextObserver } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
-import * as Nes from '@hapi/nes/lib/Client';
+import * as Nes from '@hapi/nes/lib/client';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ import * as Nes from '@hapi/nes/lib/Client';
 export class ConnectivityService {
   nesClient: any;
 
-  constructor() {}
+  constructor() { }
 
   async connect() {
     if (!this.nesClient) {

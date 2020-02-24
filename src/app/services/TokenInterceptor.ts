@@ -6,11 +6,14 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     request = request.clone({
       setHeaders: {
-        userid: this.authService.getUserId()
+        // 'Access-Control-Allow-Origin': '*',
+        userid: this.authService.getUserId() ? this.authService.getUserId() : '',
+        // email: this.authService.getUserEmail(),
+        // password: this.authService.getSecret(),
       }
     });
     return next.handle(request);

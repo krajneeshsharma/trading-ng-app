@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { UserService } from 'src/app/services/user.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -9,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   throwErrors = false;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router, private userService: UserService, private toastr: ToastrService) {
     this.registerForm = fb.group({
       name: ['', [
         Validators.required,
@@ -39,6 +41,14 @@ export class RegisterComponent implements OnInit {
     if (!this.registerForm.valid) {
       this.throwErrors = true;
     } else {
+      this.userService.registerUser(this.registerForm.value)
+        .subscribe((res) => { console.log(res); 
+          this.router.navigate(['login']);
+          this.toastr.success('Success', res['message']);
+        }, (err) => { 
+          this.toastr.error('Error', err['error']['message']);
+          console.log(err); 
+        });
     }
   }
 }
