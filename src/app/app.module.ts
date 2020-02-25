@@ -21,6 +21,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { DraftsComponent } from './pages/drafts/drafts.component';
+import { DraftsGridComponent } from './components/drafts-grid/drafts-grid.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -29,6 +31,7 @@ const routes: Routes = [
   { path: 'assets', component: AssetsComponent },
   { path: 'details', component: DetailsComponent },
   { path: 'details/:symbol', component: DetailsComponent },
+  { path: 'drafts', component: DraftsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
@@ -49,7 +52,9 @@ const routes: Routes = [
     FollowStocksPopupComponent,
     BuySellPopupComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    DraftsComponent,
+    DraftsGridComponent
   ],
   providers: [
     {

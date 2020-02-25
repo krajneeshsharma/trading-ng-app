@@ -107,7 +107,7 @@ a:active {
     border-radius: 2px;
     margin-left: 2px;
     padding: 2px;
-    width: 95px;
+    width: 66px;
 }
 
 .modal__btn {
@@ -118,6 +118,7 @@ a:active {
     cursor: pointer;
     float: right;
     padding: 5px 10px;
+    margin: 4px 10px;
 }
 
 .modal__btn.sell {

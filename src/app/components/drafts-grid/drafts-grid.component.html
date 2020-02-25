@@ -1,0 +1,9 @@
+<div class="stock-list__grid-cell">
+    <a><span class="btn-transaction btn-transaction--buy" (click)="openBuySellPopup('draft')"> PUT </span></a>
+</div>
+<section class="stock-transactions full-width" style="margin-top: 10px;">
+    <ag-grid-angular #agGrid style="height: 350px; " class="ag-theme-balham" [rowData]="assets">
+        <ag-grid-column headerName="Stock" field="symbol"></ag-grid-column>
+        <ag-grid-column headerName="Amount" field="amount"></ag-grid-column>
+    </ag-grid-angular>
+</section>

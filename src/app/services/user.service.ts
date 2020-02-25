@@ -22,10 +22,11 @@ export class UserService {
   get registerUrl(): string {
     return environment.serverUrl + 'userdata/register';
   }
-
-
   get allocationsUrl(): string {
     return environment.serverUrl + 'userdata/allocations';
+  }
+  get draftsUrls() {
+    return environment.serverUrl + 'drafts';
   }
 
   constructor(private http: HttpClient) { }
@@ -131,6 +132,18 @@ export class UserService {
     return this.http.post(
       this.registerUrl,
       data
+    );
+  }
+
+  getDrafts(): Observable<any> {
+    return this.http.get(
+      this.draftsUrls
+    );
+  }
+
+  deleteDrafts(): Observable<any> {
+    return this.http.delete(
+      this.draftsUrls
     );
   }
 
