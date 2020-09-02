@@ -28,7 +28,7 @@
     "@angular/router": "~8.0.0",
     "ag-grid-angular": "^21.0.1",
     "ag-grid-community": "^21.0.1",
-    "bestzip": "^2.1.4",
+    "bestzip": "^2.1.7",
     "highcharts": "^7.1.2",
     "ngx-toastr": "~11.3.3",
     "rxjs": "~6.4.0",
